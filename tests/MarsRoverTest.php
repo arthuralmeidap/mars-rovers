@@ -2,6 +2,7 @@
 
 require_once '../MarsPlateau.php';
 require_once '../MarsRover.php';
+require_once '../AbstractCardinalPoint.php';
 require_once '../NorthCardinalPoint.php';
 require_once '../SouthCardinalPoint.php';
 require_once '../EastCardinalPoint.php';

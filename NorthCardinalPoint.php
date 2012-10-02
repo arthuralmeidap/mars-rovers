@@ -4,14 +4,9 @@
  *
  * @author Arthur <arthur.almeidapereira@gmail.com>
  */
-class NorthCardinalPoint
+class NorthCardinalPoint extends AbstractCardinalPoint
 {
-    private $cardinalPoint = 'N';
-    
-    public function __toString()
-    {
-        return $this->cardinalPoint;
-    }
+    protected $cardinalPoint = 'N';
     
     public function getLeftCardinalPoint()
     {

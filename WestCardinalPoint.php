@@ -4,14 +4,9 @@
  *
  * @author Arthur <arthur.almeidapereira@gmail.com>
  */
-class WestCardinalPoint
+class WestCardinalPoint extends AbstractCardinalPoint
 {
-    private $cardinalPoint = 'W';
-    
-    public function __toString()
-    {
-        return $this->cardinalPoint;
-    }
+    protected $cardinalPoint = 'W';
     
     public function getLeftCardinalPoint()
     {
