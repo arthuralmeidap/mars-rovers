@@ -8,6 +8,10 @@ require_once '../MarsPlateau.php';
  */
 class MarsRover
 {
+    /**
+     *
+     * @var AbstractCardinalPoint
+     */
     private $heading;
     private $coordinateX;
     private $coordinateY;
@@ -38,10 +42,10 @@ class MarsRover
             switch ($path[$ct])
             {
                 case 'L':
-                    $this->_moveLeft( $this->heading );
+                    $this->heading = $this->heading->getLeftCardinalPoint();
                     break;
                 case 'R':
-                    $this->_moveRight( $this->heading );
+                    $this->heading = $this->heading->getRightCardinalPoint();
                     break;
                 case 'M':
                     $this->_moveFoward();
@@ -50,16 +54,6 @@ class MarsRover
                     throw new Exception("Incorrect movement: {$path}");
             }
         }
-    }
-    
-    private function _moveLeft( AbstractCardinalPoint $cardinalPoint )
-    {
-        $this->heading = $cardinalPoint->getLeftCardinalPoint();
-    }
-    
-    private function _moveRight( AbstractCardinalPoint $cardinalPoint )
-    {
-        $this->heading = $cardinalPoint->getRightCardinalPoint();
     }
     
     public function _moveFoward()
