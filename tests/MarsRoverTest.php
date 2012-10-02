@@ -63,18 +63,18 @@ class MarsRoverTest extends PHPUnit_Framework_TestCase
         $rover4 = new MarsRover();
         
         $rover1->landOn($this->plateau, 1,2,new NorthCardinalPoint());
-        $rover2->landOn($this->plateau, 1,2,'S');
-        $rover3->landOn($this->plateau, 1,2,'E');
-        $rover4->landOn($this->plateau, 1,2,'W');
+        $rover2->landOn($this->plateau, 1,2,new SouthCardinalPoint());
+        $rover3->landOn($this->plateau, 1,2,new EastCardinalPoint());
+        $rover4->landOn($this->plateau, 1,2,new WestCardinalPoint());
 
         $rover1->move('R');
         $rover2->move('R');
         $rover3->move('R');
         $rover4->move('R');
 
-        $this->assertEquals('E', $rover1->getHeading());
-        $this->assertEquals('W', $rover2->getHeading());
-        $this->assertEquals('S', $rover3->getHeading());
+        $this->assertEquals(new EastCardinalPoint(), $rover1->getHeading());
+        $this->assertEquals(new WestCardinalPoint(), $rover2->getHeading());
+        $this->assertEquals(new SouthCardinalPoint(), $rover3->getHeading());
         $this->assertEquals(new NorthCardinalPoint(), $rover4->getHeading());
     }
     
@@ -86,9 +86,9 @@ class MarsRoverTest extends PHPUnit_Framework_TestCase
         $rover4 = new MarsRover();
         
         $rover1->landOn($this->plateau, 1,2,new NorthCardinalPoint());
-        $rover2->landOn($this->plateau, 2,1,'S');
-        $rover3->landOn($this->plateau, 3,3,'E');
-        $rover4->landOn($this->plateau, 4,5,'W');
+        $rover2->landOn($this->plateau, 2,1,new SouthCardinalPoint());
+        $rover3->landOn($this->plateau, 3,3,new EastCardinalPoint());
+        $rover4->landOn($this->plateau, 4,5,new WestCardinalPoint());
 
         $rover1->move('M');
         $rover2->move('M');
@@ -104,19 +104,19 @@ class MarsRoverTest extends PHPUnit_Framework_TestCase
         $resultPosition2 = array(
             'coordinateX' => 2,
             'coordinateY' => 0,
-            'heading'     => 'S'
+            'heading'     => new SouthCardinalPoint()
         );
         
         $resultPosition3 = array(
             'coordinateX' => 4,
             'coordinateY' => 3,
-            'heading'     => 'E'
+            'heading'     => new EastCardinalPoint()
         );
         
         $resultPosition4 = array(
             'coordinateX' => 3,
             'coordinateY' => 5,
-            'heading'     => 'W'
+            'heading'     => new WestCardinalPoint()
         );
          
          $this->assertEquals($resultPosition1, $rover1->getActualPosition());
@@ -147,7 +147,7 @@ class MarsRoverTest extends PHPUnit_Framework_TestCase
         $rover2 = new MarsRover();
         
         $rover1->landOn($this->plateau, 1,2,new NorthCardinalPoint());
-        $rover2->landOn($this->plateau, 3,3,'E');
+        $rover2->landOn($this->plateau, 3,3,new EastCardinalPoint());
         
         $rover1->move('LMLMLMLMM');
         $rover2->move('MMRMMRMRRM');
@@ -161,7 +161,7 @@ class MarsRoverTest extends PHPUnit_Framework_TestCase
         $resultPosition2 = array(
             'coordinateX' => 5,
             'coordinateY' => 1,
-            'heading'     => 'E'
+            'heading'     => new EastCardinalPoint()
         );
         
         $this->assertEquals( $resultPosition1, $rover1->getActualPosition());

@@ -14,4 +14,6 @@ abstract class AbstractCardinalPoint
     }
     
     abstract function getLeftCardinalPoint();
+    
+    abstract function getRightCardinalPoint();
 }

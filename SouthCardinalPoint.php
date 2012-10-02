@@ -12,4 +12,9 @@ class SouthCardinalPoint extends AbstractCardinalPoint
     {
         return new EastCardinalPoint();
     }
+    
+    public function getRightCardinalPoint()
+    {
+        return new WestCardinalPoint();
+    }
 }
