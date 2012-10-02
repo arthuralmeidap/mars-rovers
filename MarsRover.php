@@ -38,7 +38,7 @@ class MarsRover
             switch ($path[$ct])
             {
                 case 'L':
-                    $this->_moveLeft();
+                    $this->_moveLeft($this->heading);
                     break;
                 case 'R':
                     $this->_moveRight();
@@ -52,25 +52,9 @@ class MarsRover
         }
     }
     
-    private function _moveLeft()
+    private function _moveLeft( $cardinalPoint )
     {
-        switch ($this->heading)
-        {
-            case 'N':
-                $this->heading = 'W';
-                break;
-            case 'S':
-                $this->heading = 'E';
-                break;
-            case 'W':
-                $this->heading = 'S';
-                break;
-            case 'E':
-                $this->heading = 'N';
-                break;
-            default :
-                throw new Exception("Incorrect heading: {$this->heading}");
-        }
+        $this->heading = $cardinalPoint->getLeftCardinalPoint();
     }
     
     private function _moveRight()
@@ -84,7 +68,7 @@ class MarsRover
                 $this->heading = 'W';
                 break;
             case 'W':
-                $this->heading = 'N';
+                $this->heading = new NorthCardinalPoint();
                 break;
             case 'E':
                 $this->heading = 'S';
