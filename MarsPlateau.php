@@ -27,12 +27,24 @@ class MarsPlateau
             throw new Exception('The size of plateau must be a valid integer');
         }
         
-        $this->maxCoordinateX = $maxCoordinateX;
-        $this->maxCoordinateY = $maxCoordinateY;
+        $this->maxCoordinateX   = $maxCoordinateX;
+        $this->maxCoordinateY   = $maxCoordinateY;
+        $this->plateau          = new ArrayObject();
     }
     
+    public function landRover( MarsRover $mRover, $coordinateX, $coordinateY )
+    {
+        $this->plateau[$coordinateX][$coordinateY] = $mRover;
+    }
+
+    /**
+     * Returns 
+     * @param type $coordinateX
+     * @param type $coordinateY
+     * @return type 
+     */
     public function getPosition($coordinateX, $coordinateY)
     {
-        
+        return $this->plateau[$coordinateX][$coordinateY];
     }
 }
