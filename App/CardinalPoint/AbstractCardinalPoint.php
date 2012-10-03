@@ -1,5 +1,7 @@
 <?php
 
+namespace App\CardinalPoint;
+
 /**
  *
  * @author Arthur <arthur.almeidapereira@gmail.com>

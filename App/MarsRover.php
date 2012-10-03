@@ -1,6 +1,6 @@
 <?php
 
-require_once '../MarsPlateau.php';
+namespace App;
 
 /**
  *

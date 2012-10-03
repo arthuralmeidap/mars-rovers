@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 /**
  *
  * @author Arthur <arthur.almeidapereira@gmail.com>
@@ -29,7 +31,7 @@ class MarsPlateau
         
         $this->maxCoordinateX   = $maxCoordinateX;
         $this->maxCoordinateY   = $maxCoordinateY;
-        $this->plateau          = new ArrayObject();
+        $this->plateau          = new \ArrayObject();
     }
     
     public function landRover( MarsRover $mRover, $coordinateX, $coordinateY )

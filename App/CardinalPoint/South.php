@@ -1,20 +1,22 @@
 <?php
 
+namespace App\CardinalPoint;
+
 /**
  *
  * @author Arthur <arthur.almeidapereira@gmail.com>
  */
-class EastCardinalPoint extends AbstractCardinalPoint
+class South extends AbstractCardinalPoint
 {
-    protected $cardinalPoint = 'E';
+    protected $cardinalPoint = 'S';
     
     public function getLeftCardinalPoint()
     {
-        return new NorthCardinalPoint();
+        return new East();
     }
     
     public function getRightCardinalPoint()
     {
-        return new SouthCardinalPoint();
+        return new West();
     }
 }
