@@ -13,19 +13,23 @@ class MarsRover
      * @var AbstractCardinalPoint
      */
     private $heading;
-    private $coordinateX;
-    private $coordinateY;
+    
+    /**
+     *
+     * @var MarsPosition 
+     */
+    private $position;
     
     private $plateau;
     
     
-    public function landOn( MarsPlateau $plateau, $coordinateX, $coordinateY, $cardinalPoint )
+    public function landOn( MarsPlateau $plateau, MarsPosition $position, CardinalPoint\AbstractCardinalPoint $cardinalPoint )
     {
-        $plateau->landRover($this, $coordinateX, $coordinateY);
+        $plateau->landRover($this, $position->getCoordinateX(), $position->getCoordinateY());
         $this->plateau      = $plateau;
         $this->heading      = $cardinalPoint;
-        $this->coordinateX  = $coordinateX;
-        $this->coordinateY  = $coordinateY;
+        $this->position     = $position;
+      
     }
     
     public function getHeading()
@@ -58,36 +62,15 @@ class MarsRover
     
     public function _moveFoward()
     {
-        $coordinateX = $this->coordinateX;
-        $coordinateY = $this->coordinateY;
-        
-        switch ($this->heading)
-        {
-            case 'N':
-                $coordinateY++;
-                break;
-            case 'S':
-                $coordinateY--;
-                break;
-            case 'W':
-                $coordinateX--;
-                break;
-            case 'E':
-                $coordinateX++;
-                break;
-            default :
-                throw new Exception("Incorrect heading: {$this->heading}");
-        }
-        
-        $this->landOn($this->plateau, $coordinateX, $coordinateY, $this->heading);
+        $this->landOn($this->plateau, $this->heading->calculatePosition($this->position) , $this->heading);
     }
 
 
     public function getActualPosition()
     {
         return array(
-            'coordinateX' => $this->coordinateX,
-            'coordinateY' => $this->coordinateY,
+            'coordinateX' => $this->position->getCoordinateX(),
+            'coordinateY' => $this->position->getCoordinateY(),
             'heading' => $this->heading
         );
     }

@@ -18,4 +18,6 @@ abstract class AbstractCardinalPoint
     abstract function getLeftCardinalPoint();
     
     abstract function getRightCardinalPoint();
+    
+    abstract function calculatePosition( \App\MarsPosition $position );
 }

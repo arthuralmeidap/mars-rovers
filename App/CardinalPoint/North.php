@@ -19,4 +19,12 @@ class North extends AbstractCardinalPoint
     {
         return new East();
     }
+    
+    public function calculatePosition( \App\MarsPosition $mPosition )
+    {
+        $coordinateX = $mPosition->getCoordinateX();
+        $coordinateY = $mPosition->getCoordinateY();
+        $coordinateY++;
+        return new \App\MarsPosition($coordinateX,$coordinateY);
+    }
 }

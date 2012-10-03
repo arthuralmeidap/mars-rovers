@@ -20,7 +20,7 @@ class MarsRoverTest extends PHPUnit_Framework_TestCase
     public function testRoverShouldLandOnPositionAndHeadingNorth()
     {
         $rover = new \App\MarsRover();
-        $rover->landOn($this->plateau, 1,2,new \App\CardinalPoint\North());
+        $rover->landOn($this->plateau, new \App\MarsPosition(1,2),new \App\CardinalPoint\North());
         
         $this->assertEquals( $rover, $this->plateau->getPosition(1,2));
         $this->assertEquals( new \App\CardinalPoint\North(), $rover->getHeading());
@@ -33,10 +33,10 @@ class MarsRoverTest extends PHPUnit_Framework_TestCase
         $rover3 = new \App\MarsRover();
         $rover4 = new \App\MarsRover();
         
-        $rover1->landOn($this->plateau, 1,2,new \App\CardinalPoint\North());
-        $rover2->landOn($this->plateau, 1,2,new \App\CardinalPoint\South());
-        $rover3->landOn($this->plateau, 1,2,new \App\CardinalPoint\East());
-        $rover4->landOn($this->plateau, 1,2,new \App\CardinalPoint\West());
+        $rover1->landOn($this->plateau, new \App\MarsPosition(1,2),new \App\CardinalPoint\North());
+        $rover2->landOn($this->plateau, new \App\MarsPosition(1,2),new \App\CardinalPoint\South());
+        $rover3->landOn($this->plateau, new \App\MarsPosition(1,2),new \App\CardinalPoint\East());
+        $rover4->landOn($this->plateau, new \App\MarsPosition(1,2),new \App\CardinalPoint\West());
 
         $rover1->move('L');
         $rover2->move('L');
@@ -56,20 +56,20 @@ class MarsRoverTest extends PHPUnit_Framework_TestCase
         $rover3 = new \App\MarsRover();
         $rover4 = new \App\MarsRover();
         
-        $rover1->landOn($this->plateau, 1,2,new \App\CardinalPoint\North());
-        $rover2->landOn($this->plateau, 1,2,new \App\CardinalPoint\South());
-        $rover3->landOn($this->plateau, 1,2,new \App\CardinalPoint\East());
-        $rover4->landOn($this->plateau, 1,2,new \App\CardinalPoint\West());
+        $rover1->landOn($this->plateau, new \App\MarsPosition(1,2),new \App\CardinalPoint\North());
+        $rover2->landOn($this->plateau, new \App\MarsPosition(1,2),new \App\CardinalPoint\South());
+        $rover3->landOn($this->plateau, new \App\MarsPosition(1,2),new \App\CardinalPoint\East());
+        $rover4->landOn($this->plateau, new \App\MarsPosition(1,2),new \App\CardinalPoint\West());
 
         $rover1->move('R');
         $rover2->move('R');
         $rover3->move('R');
         $rover4->move('R');
 
-        $this->assertEquals(new \App\CardinalPoint\East(), $rover1->getHeading());
-        $this->assertEquals(new \App\CardinalPoint\West(), $rover2->getHeading());
-        $this->assertEquals(new \App\CardinalPoint\South(), $rover3->getHeading());
-        $this->assertEquals(new \App\CardinalPoint\North(), $rover4->getHeading());
+        $this->assertInstanceOf('\App\CardinalPoint\East', $rover1->getHeading());
+        $this->assertInstanceOf('\App\CardinalPoint\West', $rover2->getHeading());
+        $this->assertInstanceOf('\App\CardinalPoint\South', $rover3->getHeading());
+        $this->assertInstanceOf('\App\CardinalPoint\North', $rover4->getHeading());
     }
     
     public function testRoverShouldMoveFoward()
@@ -79,10 +79,10 @@ class MarsRoverTest extends PHPUnit_Framework_TestCase
         $rover3 = new \App\MarsRover();
         $rover4 = new \App\MarsRover();
         
-        $rover1->landOn($this->plateau, 1,2,new \App\CardinalPoint\North());
-        $rover2->landOn($this->plateau, 2,1,new \App\CardinalPoint\South());
-        $rover3->landOn($this->plateau, 3,3,new \App\CardinalPoint\East());
-        $rover4->landOn($this->plateau, 4,5,new \App\CardinalPoint\West());
+        $rover1->landOn($this->plateau, new \App\MarsPosition(1,2),new \App\CardinalPoint\North());
+        $rover2->landOn($this->plateau, new \App\MarsPosition(2,1),new \App\CardinalPoint\South());
+        $rover3->landOn($this->plateau, new \App\MarsPosition(3,3),new \App\CardinalPoint\East());
+        $rover4->landOn($this->plateau, new \App\MarsPosition(4,5),new \App\CardinalPoint\West());
 
         $rover1->move('M');
         $rover2->move('M');
@@ -122,7 +122,7 @@ class MarsRoverTest extends PHPUnit_Framework_TestCase
     public function testRoverShouldDoMoreThanOneMove()
     {
         $rover1 = new \App\MarsRover();
-        $rover1->landOn($this->plateau, 1,2,new \App\CardinalPoint\North());
+        $rover1->landOn($this->plateau, new \App\MarsPosition(1,2),new \App\CardinalPoint\North());
         $rover1->move('LMLMLMLMM');
         
         $resultPosition1 = array(
@@ -140,8 +140,8 @@ class MarsRoverTest extends PHPUnit_Framework_TestCase
         $rover1 = new \App\MarsRover();
         $rover2 = new \App\MarsRover();
         
-        $rover1->landOn($this->plateau, 1,2,new \App\CardinalPoint\North());
-        $rover2->landOn($this->plateau, 3,3,new \App\CardinalPoint\East());
+        $rover1->landOn($this->plateau, new \App\MarsPosition(1,2),new \App\CardinalPoint\North());
+        $rover2->landOn($this->plateau, new \App\MarsPosition(3,3),new \App\CardinalPoint\East());
         
         $rover1->move('LMLMLMLMM');
         $rover2->move('MMRMMRMRRM');
